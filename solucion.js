@@ -204,12 +204,12 @@ export const primo = (numero = undefined, primo) => {
   }
 };
 
-// primo();
-// primo("2");
-// primo(-2);
-// // 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89 y 97.
-// primo(1);
-// primo(200);
+primo();
+primo("2");
+primo(-2);
+// 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89 y 97.
+primo(1);
+primo(200);
 
 console.info("**********EJERCICIO CETRE**********");
 
@@ -228,13 +228,13 @@ export const non = (numero) => {
     : console.info(`El numero ${numero} es Impar`);
 };
 
-// non();
-// non("3");
-// non(0);
-// non(2);
-// non(3);
-// non(10);
-// non(11);
+non();
+non("3");
+non(0);
+non(2);
+non(3);
+non(10);
+non(11);
 
 console.info("**********EJERCICIO CATORCE**********");
 
@@ -356,15 +356,15 @@ export const desc = (
   );
 };
 
-// desc();
-// desc(0);
-// desc("0");
-// desc(-1);
-// desc(100);
-// desc(100, 0);
-// desc(100, "0");
-// desc(100, -100);
-// desc(5000, 50);
+desc();
+desc(0);
+desc("0");
+desc(-1);
+desc(100);
+desc(100, 0);
+desc(100, "0");
+desc(100, -100);
+desc(5000, 50);
 
 console.info("**********EJERCICIO DEICISIETE**********");
 
@@ -399,3 +399,155 @@ console.clear();
 // // 18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
 // // 19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
 // // 20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
+
+console.info("***********EJERCICIO DIECIOCHO**********");
+
+export const found = (str = "", newstr = "", cons = "") => {
+  if (!str) return console.warn("Ingrese texto para ser analizado");
+
+  if (!(typeof str == "string"))
+    return console.error("Solo se reciben una cadena de texto ");
+
+  newstr = str.toLowerCase();
+
+  newstr = newstr.replace(/[aeiou]/g, "");
+
+  newstr = newstr.replace(/ /g, "");
+
+  cons = str.toLowerCase();
+
+  cons = cons.replace(/[bcdfghjklmnpqrstvwyz]/g, "");
+
+  cons = cons.replace(/ /g, "");
+
+  console.info(
+    `En el texto "${str}" Hay ${cons.length} vocales y ${newstr.length} consonantes`
+  );
+};
+found();
+found(12345);
+found("Hola vamos a hacer una prueba con este string");
+
+console.info("**********EJERCICIO DIECINUEVE**********");
+
+export const cmpname = (str = "", str1 = "") => {
+  if (!str) return console.warn("Ingrese Nombre");
+
+  if (!(typeof str === "string"))
+    return console.error("Caracteres invalidos en el nombre");
+
+  str1 = str.match(/^[a-zA-Z\s]*$/)
+    ? console.info(`La entrada ingresada: "${str}" es un nombre valido.`)
+    : console.error(`La entrada ingresada :"${str}" no es un nombre valido.`);
+};
+cmpname();
+cmpname(12345);
+cmpname({});
+cmpname("Didier Daniel Rodriguez Rodriguez");
+
+console.info("**********EJERCICIO VIENTE**********");
+
+export const mail = (str = "") => {
+  if (!str) return console.warn("Ingrese correo electronico");
+
+  if (!(typeof str === "string"))
+    return console.warn("Ingrese un correo valido");
+
+  let str1 =
+    str.match(/@/g) && str.match(/.com/g)
+      ? console.info(`El correo ${str} es un correo valido`)
+      : console.error(`Valide el correo ${str} ya que no es un correo valido`);
+};
+mail();
+mail(12345);
+mail("daniel.com");
+mail("daniel@");
+mail("Daniel@gmail.com");
+
+console.clear();
+
+// // 21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
+// // 22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
+// // // 23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}
+
+console.info("**********EJERCICIO VENTIUNO**********");
+
+export const sqrt = (array = undefined, base = undefined, pow = undefined) => {
+  if (!(array instanceof Array))
+    return console.error("Ingrese un arreglo de numeros");
+
+  if (!array) return console.warn("Ingrese numeros a potenciar");
+
+  if (!base) return console.warn("Potencia vacia");
+
+  if (typeof base !== "number") return console.error("Potencia no valida");
+
+  if (Math.sign(base) === -1 || Math.sign(base) === 0)
+    return console.error("La potencia no puede ser negativa ni cero");
+
+  for (let index = 0; index < array.length; index++) {
+    const sqr = array[index];
+
+    pow = [Math.pow(sqr, base)];
+
+    console.info(pow);
+  }
+};
+
+// sqrt();
+// sqrt(12335, 2);
+// sqrt([4, 4, 4, 4]);
+// sqrt([2, 3, 4, 5], "3");
+// sqrt([2, 3, 4, 5], -3);
+// sqrt([2, 3, 4, 5], 0);
+// sqrt([1, 4, 5], 2);
+
+console.info("**********EJERCICIO VENTIDOS**********");
+
+export const max = (array = undefined) => {
+  if (!array) return console.warn("No hay numeros a validar");
+
+  if (array.includes(typeof array != "number"))
+    return console.error("El arreglo solo permite numeros");
+
+  if (!(array instanceof Array))
+    return console.error("Debe ingresar arreglo con numeros");
+
+  let a = Math.max(...array),
+    b = Math.min(...array);
+
+  console.info(
+    `Del arreglo ingresado [${array}] el numero mayor es: "${a}" y el menor es: "${b}"`
+  );
+};
+max();
+max("hol");
+max(["a", true]);
+max([1, 3, 10, 16]);
+
+console.info("**********EJERCICIO VENTITRES**********");
+
+export const par = (arr = undefined, par = [], impar = []) => {
+  if (!arr) return console.warn("Ingrese array con #");
+
+  if (!(arr instanceof Array)) return console.error("Solo se recibe un array");
+
+  if (arr.includes(typeof arr != "number"))
+    console.warn("Solo se recibe array con #");
+
+  for (let index = 0; index < arr.length; index++) {
+    const element = arr[index] % 2;
+
+    if (element === 0) {
+      par.push(arr[index]);
+    } else {
+      impar.push(arr[index]);
+    }
+  }
+  console.info(`# pares en el array [${par}]`);
+  console.info(`# impares en el array [${impar}]`);
+};
+// par();
+// par("hol");
+// par(["h", true]);
+// par([1, 3, 5, 7, 9, 2, 6]);
