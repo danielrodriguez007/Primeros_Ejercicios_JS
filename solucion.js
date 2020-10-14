@@ -520,10 +520,10 @@ export const max = (array = undefined) => {
     `Del arreglo ingresado [${array}] el numero mayor es: "${a}" y el menor es: "${b}"`
   );
 };
-max();
-max("hol");
-max(["a", true]);
-max([1, 3, 10, 16]);
+// max();
+// max("hol");
+// max(["a", true]);
+// max([1, 3, 10, 16]);
 
 console.info("**********EJERCICIO VENTITRES**********");
 
@@ -551,3 +551,266 @@ export const par = (arr = undefined, par = [], impar = []) => {
 // par("hol");
 // par(["h", true]);
 // par([1, 3, 5, 7, 9, 2, 6]);
+
+console.clear();
+
+/*24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
+25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
+// 26) Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5.*/
+
+console.info("**********EJERCICIO VENTICUATRO**********");
+
+export const orden = (arr = undefined, asc = undefined, desc = undefined) => {
+  if (!arr) return console.error("Ingrese array con nums");
+
+  if (arr.length === 0) return console.warn("El array esta vacio");
+
+  if (!(arr instanceof Array))
+    return console.warn(`Ha ingresado ${arr} que no es un array`);
+
+  if (arr.includes(typeof arr !== "number"))
+    return console.error("En el array solo deben ir nums");
+
+  console.info(arr);
+
+  asc = arr.sort();
+
+  console.info(asc);
+
+  desc = asc.reverse();
+
+  console.info(desc);
+};
+// orden();
+// orden([]);
+// orden({});
+// orden(["hola", 1, true]);
+// orden([13, 33, 43, 76, 999, 25, 0]);
+
+console.info("**********EJERCICIO VIENTICINCO**********");
+
+export const repeat = (arr = undefined, unic = undefined) => {
+  if (!arr) return console.warn("Ingrese array");
+
+  if (arr.length === 0) return console.error("Array vacio");
+
+  if (!(arr instanceof Array))
+    return console.error(`Ingresó "${arr}" que no es un array`);
+
+  if (arr.includes(typeof arr !== "number"))
+    return console.warn("Se reciben # solamente");
+
+  unic = new Set(arr);
+
+  console.info(unic);
+};
+// repeat();
+// repeat([]);
+// repeat(1, "h", false);
+// repeat(["aaa", "aaa", "aaa", "aaa", "aaa"]);
+// repeat([1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7]);
+
+console.info("**********EJERCICIO VENTISEIS************");
+
+export const prom = (
+  arr = undefined,
+  sum = undefined,
+  prome = undefined,
+  a = undefined,
+  b = undefined
+) => {
+  if (!arr) return console.warn("Ingrese array");
+
+  if (arr.length === 0) return console.error("Array vacio");
+
+  if (!(arr instanceof Array))
+    return console.error(`Ingresó "${arr}" que no es un array`);
+
+  if (arr.includes(typeof arr !== "number"))
+    return console.warn("Se reciben # solamente");
+
+  sum = arr.reduce((a, b) => a + b);
+
+  prome = sum / arr.length;
+  console.info(`El promedio es ${prome} `);
+};
+// prom([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+
+console.clear();
+// 27) Programa una clase llamada Pelicula.
+
+// La clase recibirá un objeto al momento de instanciarse con los siguentes datos: id de la película en IMDB, titulo, director, año de estreno, país o países de origen, géneros y calificación en IMBD.
+//   - Todos los datos del objeto son obligatorios.
+//   - Valida que el id IMDB tenga 9 caracteres, los primeros 2 sean letras y los
+//      7 restantes números.
+//   - Valida que el título no rebase los 100 caracteres.
+//   - Valida que el director no rebase los 50 caracteres.
+//   - Valida que el año de estreno sea un número entero de 4 dígitos.
+//   - Valida que el país o paises sea introducidos en forma de arreglo.
+//   - Valida que los géneros sean introducidos en forma de arreglo.
+//   - Valida que los géneros introducidos esten dentro de los géneros
+//      aceptados*.
+//   - Crea un método estático que devuelva los géneros aceptados*.
+//   - Valida que la calificación sea un número entre 0 y 10 pudiendo ser
+//     decimal de una posición.
+//   - Crea un método que devuelva toda la ficha técnica de la película.
+//   - Apartir de un arreglo con la información de 3 películas genera 3
+//     instancias de la clase de forma automatizada e imprime la ficha técnica
+//     de cada película.
+
+// * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.
+
+console.info("**********EJERCICIO VENTISIETE**********");
+
+class Pelicula {
+  constructor(id, titulo, director, estreno, pais, generos, calificacion) {
+this.id = id;
+this.titulo = titulo;
+this.director = director;
+this.estreno = estreno;
+this.pais = pais;
+this.generos = generos;
+this.calificacion = calificacion;
+
+this.validarIMDB(id);
+this.validarTitulo(titulo);
+this.validarDirector(director);
+this.validarEstreno(estreno);
+this.validarPais(pais);
+this.validarGeneros(generos);
+this.validarCalificacion(calificacion);
+}
+static get listaGeneros(){
+ return ["Action", "Adult", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary" ,"Drama","Family", "Fantasy", "Film Noir", "Game-Show", "History", "Horror", "Musical", "Music", "Mystery", "News", "Reality-TV", "Romance", "Sci-Fi, Short", "Sport", "Talk-Show", "Thriller", "War", "Western"];
+}
+
+static generosAceptados(){
+ return console.info(`Los generos aceptados son: ${Pelicula.listaGeneros.join(", ")} `);
+}
+
+validarCadena(propiedad, valor){
+ if(!valor) return console.warn(`${propiedad} "${valor}"  esta vacio"`);
+
+ if(typeof valor !== "string") return console.error(`${propiedad} "${valor}" ingresado NO es una cadena de texto"`);
+
+ return true;
+}
+validarLongitudCadena(propiedad, valor, longuitud){
+ if(valor.length > longuitud) return console.error(`${propiedad} "${valor}" excede los caracteres permitidos ${propiedad}`);
+
+ return true;
+}
+
+validarNumero(propiedad, valor){
+ if(!valor) return console.warn(`${propiedad} "${valor}"  esta vacio"`);
+
+ if(typeof valor !== "number") return console.error(`${propiedad} "${valor}" ingresado NO es una numero"`);
+
+ return true;
+}
+
+validarArreglo(propiedad, valor){
+if(!valor) return console.warn(`${propiedad} "${valor}" esta vacio`);
+
+if(!(valor instanceof Array)) return console.error(`${propiedad} "${valor}" ingresado no es un array`);
+
+if (valor.length === 0) return console.error(`${propiedad} "${valor}" ingresado no tiene datos`);
+
+for (const cadena of valor) {
+ if(typeof cadena !== "string") return console.error(`El valor "${cadena}" ingresado NO es una cadena de texto`); 
+ 
+}
+return true;
+}
+
+validarIMDB(id){
+ if(this.validarCadena("IMDB id", id)){
+  if (!(/^([a-z]){2}([0-9]){7}$/.test(id))) return console.error(`IMBD id "${id}" no es valido  debe tener 9 caracteres, los 2 primeros letras y las 7 restantes numero`);
+ }
+}
+validarTitulo(titulo){
+ if(this.validarCadena("Titulo", titulo)){
+  this.validarLongitudCadena("Titulo", titulo, 100); 
+}
+}
+ validarDirector(director){
+ if(this.validarCadena("Director", director)){
+  this.validarLongitudCadena("Director", director, 50);
+}
+}
+validarEstreno(estreno){
+ if(this.validarNumero("Año de estreno", estreno)){
+  if (!(/^([0-9]){4}$/.test(estreno))) return console.error(`Año estreno "${estreno}" no es valido  debe ser un numero de 4 digitos`);
+ }
+}
+validarPais(pais){
+ this.validarArreglo("Pais", pais);
+}
+validarGeneros(generos){
+ if(this.validarArreglo("Generos", generos)){
+  for (let genero of generos) {
+
+   // console.info(genero, Pelicula.listaGeneros.includes(genero));
+ if(!Pelicula.listaGeneros.includes(genero)){
+  console.error(`El genero ingresado "${genero}" No esta permitido`);
+  Pelicula.generosAceptados();
+ }   
+ }
+ }
+}
+validarCalificacion(calificacion){
+ if(this.validarNumero("Calificacion", calificacion))
+ return (calificacion < 0 ||  calificacion > 10 )
+   ? console.error("La calificacion debe estar en un rango de 0 a 10")
+   :this.calificacion = calificacion.toFixed(1);
+}
+fichaTecnica(){
+ console.info(`Ficha Técnica\nTitulo: ${this.titulo}\nDirector:${this.director}\nAño De Estreno:${this.estreno}\nPais:${this.pais.join("-")}\nGeneros:${this.generos.join(",")}\nCalificacion:${this.calificacion}\nIMDB:${this.id}`)
+}
+}
+
+
+
+/*const movie = new Pelicula(
+Pelicula.id = "tt1234567",
+Pelicula.titulo = "Titulo de la Pelicula",
+Pelicula.director = "Nombre del Director",
+Pelicula.estreno = 2020,
+Pelicula.pais = ["Colombia"],
+Pelicula.generos = ["Comedy", "Documentary"],
+Pelicula.calificacion = 2.788
+)
+movie.fichaTecnica();*/
+
+const pelis = [
+{
+ id : "tt1234567",
+titulo : "No te metas con Zohan",
+director : "Adam Sandler",
+estreno : 2009,
+pais : ["USA"],
+generos : ["Comedy"],
+calificacion : 8.0
+},
+{
+ id : "tt7654321",
+titulo : "Blade Runner",
+director : "Ridley Scott",
+estreno : 1982,
+pais : ["USA"],
+generos : ["Action"],
+calificacion :8.1
+},
+{
+ id : "tt1234567",
+titulo : "Anchorman",
+director : "Adam McKay",
+estreno : 2004,
+pais : ["USA"],
+generos : ["Comedy"],
+calificacion : 7.2
+}
+];
+
+pelis.forEach(el => new Pelicula (el).fichaTecnica());
+
